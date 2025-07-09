@@ -4,12 +4,16 @@ import Message from './Message';
 import { FaPaperPlane } from 'react-icons/fa';
 import './ChatBox.css';
 
-function ChatBox({ userId, onSwitchUser }) {
+function ChatBox({ userId, onSwitchUser,theme,toggleTheme }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [hasDocs, setHasDocs] = useState(true);
   const chatEndRef = useRef(null);
-  const [showSidebar, setShowSidebar] = useState(false);
+  
+
+
+
+  
 
   useEffect(() => {
     axios.get(`https://ai-bot-backend-q85g.onrender.com/api/chat/history/${userId}`)
@@ -75,20 +79,16 @@ function ChatBox({ userId, onSwitchUser }) {
      <div className="chat-header">
         <div className="user-info">
             👤 <strong>{userId}</strong>
-            <button onClick={onSwitchUser} className="switch-user-btn">🔄 Switch</button>
+            <button onClick={onSwitchUser} className="switch-user-btn">🔄 Switch User</button>
         </div>
-  <button onClick={() => setShowSidebar(!showSidebar)} className="sidebar-toggle">
-    ☰
-  </button>
+        <div className="header-buttons">
+  
+  <button className="theme-toggle" onClick={toggleTheme}>
+              {theme === 'light' ? '🌙' : '☀️'}
+            </button>
+</div>
 </div>
 
-
-      {showSidebar && (
-        <div className="chat-sidebar">
-          <p>📁 Sidebar content here</p>
-          <p>📝 Chat settings or shortcuts</p>
-        </div>
-      )}
 
       <div className="chat-messages">
         {messages.map((msg, idx) => (

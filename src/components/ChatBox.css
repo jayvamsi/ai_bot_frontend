@@ -1,25 +1,13 @@
-/* .chatbox {
-  display: flex;
-  flex-direction: column;
-  height: 95vh;
-  max-width: 600px;
-  width: 100%;
-  margin: auto;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  padding: 1rem;
-  
-} */
- .chatbox {
+.chatbox {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background-color: #ffffff;
   padding: 1rem;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Mobile view only */
@@ -33,13 +21,7 @@
   }
 }
 
-
 .chat-header {
-  /* font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 0.5rem;
-  text-align: left; */
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,6 +29,17 @@
   color: #555;
   margin-bottom: 0.5rem;
   text-align: left;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 0.4rem;
 }
 
 .chat-messages {
@@ -118,9 +111,12 @@
   text-align: center;
 }
 
-/* dark mode styles */
-
+/* Dark mode styles */
 .app.dark .chatbox {
+  background-color: #1e1e1e;
+}
+
+.app.dark .chat-input {
   background-color: #1e1e1e;
 }
 
@@ -143,32 +139,37 @@
   color: #eee;
 }
 
-
-/* side bar toggle */
-
-.sidebar-toggle {
-  float: right;
-  background: transparent;
+/* Theme toggle button */
+.theme-toggle {
+  background-color: #007bff;
+  color: white;
   border: none;
-  font-size: 1.4rem;
+  border-radius: 6px;
+  padding: 4px 10px;
   cursor: pointer;
+  font-size: 0.75rem;
 }
 
-.chat-sidebar {
-  background-color: #f0f0f0;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 10px;
+.theme-toggle:hover {
+  background-color: #0056b3;
 }
 
-.app.dark .chat-sidebar {
-  background-color: #222;
-  color: #ccc;
+/* Switch user button */
+.switch-user-btn {
+  background-color: #000000;
+  color: white;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
 }
 
+.switch-user-btn:hover {
+  background-color: #ff0202;
+}
 
-/* message fade started here */
-
+/* Message transitions (optional) */
 .fade-enter {
   opacity: 0;
   transform: translateY(10px);
@@ -184,32 +185,4 @@
 .fade-exit-active {
   opacity: 0;
   transition: opacity 300ms ease;
-}
-/* message fade ended here */
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.switch-user-btn {
-  background-color: #f44336;
-  color: white;
-  padding: 4px 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.75rem;
-}
-
-.switch-user-btn:hover {
-  background-color: #d32f2f;
-}
-
-.header-buttons {
-  float: right;
-  display: flex;
-  gap: 0.4rem;
-  margin-left: auto;
 }
