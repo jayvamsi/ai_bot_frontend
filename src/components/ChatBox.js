@@ -14,11 +14,11 @@ function ChatBox({ userId }) {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/chat/history/${userId}`)
+    axios.get(`https://ai-bot-backend-q85g.onrender.com/api/chat/history/${userId}`)
       .then(res => setMessages(res.data))
       .catch(err => console.error('Failed to load history:', err));
 
-    axios.get(`http://localhost:5000/api/upload/user/${userId}`)
+    axios.get(`https://ai-bot-backend-q85g.onrender.com/api/upload/user/${userId}`)
       .then(res => setHasDocs(res.data.hasDocs))
       .catch(err => {
         console.error('Doc check failed:', err);
@@ -38,7 +38,7 @@ function ChatBox({ userId }) {
     setInput('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/chat/send', {
+      const res = await axios.post('https://ai-bot-backend-q85g.onrender.com/api/chat/send', {
         userId,
         message: input,
       });
@@ -63,7 +63,7 @@ function ChatBox({ userId }) {
     formData.append('userId', userId);
 
     try {
-      await axios.post('http://localhost:5000/api/upload', formData);
+      await axios.post('https://ai-bot-backend-q85g.onrender.com/api/upload', formData);
       alert('✅ File uploaded successfully!');
       setHasDocs(true); // Hide no-doc message
     } catch (err) {
