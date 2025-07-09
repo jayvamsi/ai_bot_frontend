@@ -178,3 +178,25 @@
   transition: opacity 300ms ease;
 }
 /* message fade ended here */
+
+.switch-user-button {
+  margin-left: 0.5rem;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.switch-user-button:hover {
+  background-color: #d32f2f;
+}
+
+.header-buttons {
+  float: right;
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+}

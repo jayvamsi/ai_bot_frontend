@@ -4,14 +4,12 @@ import Message from './Message';
 import { FaPaperPlane } from 'react-icons/fa';
 import './ChatBox.css';
 
-
-function ChatBox({ userId }) {
+function ChatBox({ userId, onSwitchUser }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [hasDocs, setHasDocs] = useState(true);
   const chatEndRef = useRef(null);
   const [showSidebar, setShowSidebar] = useState(false);
-
 
   useEffect(() => {
     axios.get(`https://ai-bot-backend-q85g.onrender.com/api/chat/history/${userId}`)
@@ -65,7 +63,7 @@ function ChatBox({ userId }) {
     try {
       await axios.post('https://ai-bot-backend-q85g.onrender.com/api/upload', formData);
       alert('✅ File uploaded successfully!');
-      setHasDocs(true); // Hide no-doc message
+      setHasDocs(true);
     } catch (err) {
       console.error('Upload failed:', err);
       alert('❌ Failed to upload file');
@@ -74,18 +72,24 @@ function ChatBox({ userId }) {
 
   return (
     <div className="chatbox">
-      <div className="chat-header">👤 User ID: <strong>{userId}</strong>
-      <button onClick={() => setShowSidebar(!showSidebar)} className="sidebar-toggle">
-    ☰
-  </button>
+      <div className="chat-header">
+        👤 User ID: <strong>{userId}</strong>
+        <div className="header-buttons">
+          <button onClick={() => setShowSidebar(!showSidebar)} className="sidebar-toggle">
+            ☰
+          </button>
+          <button onClick={onSwitchUser} className="switch-user-btn">
+            🔄 Switch User
+          </button>
+        </div>
       </div>
 
       {showSidebar && (
-    <div className="chat-sidebar">
-      <p>📁 Sidebar content here</p>
-      <p>📝 Chat settings or shortcuts</p>
-    </div>
-  )}
+        <div className="chat-sidebar">
+          <p>📁 Sidebar content here</p>
+          <p>📝 Chat settings or shortcuts</p>
+        </div>
+      )}
 
       <div className="chat-messages">
         {messages.map((msg, idx) => (
@@ -95,24 +99,23 @@ function ChatBox({ userId }) {
       </div>
 
       {!hasDocs && (
-  <>
-    <div className="no-doc-warning">
-      ⚠️ You have not uploaded any company documents yet.
-    </div>
-    <div className="file-upload-section">
-      <label className="upload-button">
-        📤 Upload File
-        <input
-          type="file"
-          accept=".pdf,.txt"
-          onChange={handleFileUpload}
-          hidden
-        />
-      </label>
-    </div>
-  </>
-)}
-
+        <>
+          <div className="no-doc-warning">
+            ⚠️ You have not uploaded any company documents yet.
+          </div>
+          <div className="file-upload-section">
+            <label className="upload-button">
+              📤 Upload File
+              <input
+                type="file"
+                accept=".pdf,.txt"
+                onChange={handleFileUpload}
+                hidden
+              />
+            </label>
+          </div>
+        </>
+      )}
 
       <div className="chat-input">
         <input
@@ -122,22 +125,17 @@ function ChatBox({ userId }) {
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
         />
-        {/* <input
-          type="file"
-          accept=".pdf,.txt"
-          onChange={handleFileUpload}
-          className="file-upload"
-        /> */}
+
         {hasDocs && (
-            <label className="attach-icon">
+          <label className="attach-icon">
             📎
             <input
-            type="file"
-            accept=".pdf,.txt"
-            onChange={handleFileUpload}
-            hidden
+              type="file"
+              accept=".pdf,.txt"
+              onChange={handleFileUpload}
+              hidden
             />
-            </label>
+          </label>
         )}
 
         <button onClick={sendMessage}><FaPaperPlane /></button>
