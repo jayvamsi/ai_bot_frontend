@@ -35,6 +35,14 @@
 
 
 .chat-header {
+  /* font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  text-align: left; */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 0.9rem;
   color: #555;
   margin-bottom: 0.5rem;
@@ -179,18 +187,23 @@
 }
 /* message fade ended here */
 
-.switch-user-button {
-  margin-left: 0.5rem;
-  padding: 4px 10px;
-  font-size: 0.8rem;
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.switch-user-btn {
   background-color: #f44336;
   color: white;
+  padding: 4px 10px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 0.75rem;
 }
 
-.switch-user-button:hover {
+.switch-user-btn:hover {
   background-color: #d32f2f;
 }
 

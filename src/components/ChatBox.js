@@ -72,17 +72,16 @@ function ChatBox({ userId, onSwitchUser }) {
 
   return (
     <div className="chatbox">
-      <div className="chat-header">
-        👤 User ID: <strong>{userId}</strong>
-        <div className="header-buttons">
-          <button onClick={() => setShowSidebar(!showSidebar)} className="sidebar-toggle">
-            ☰
-          </button>
-          <button onClick={onSwitchUser} className="switch-user-btn">
-            🔄 Switch User
-          </button>
+     <div className="chat-header">
+        <div className="user-info">
+            👤 <strong>{userId}</strong>
+            <button onClick={onSwitchUser} className="switch-user-btn">🔄 Switch</button>
         </div>
-      </div>
+  <button onClick={() => setShowSidebar(!showSidebar)} className="sidebar-toggle">
+    ☰
+  </button>
+</div>
+
 
       {showSidebar && (
         <div className="chat-sidebar">
